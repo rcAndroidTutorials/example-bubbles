@@ -51,25 +51,25 @@ class GestorNotificationes(private val context: Context) {
             .setSuppressNotification(true)
             .build()
     }
-    private fun crearNotification(mensaje: String, icon: Icon, person: Person): Notification.Builder {
+    private fun crearNotification(mensaje: String, icon: Icon, persona: Person): Notification.Builder {
         return Notification.Builder(context, CHANNELS)
             .setContentTitle(mensaje)
             .setLargeIcon(icon)
             .setSmallIcon(icon)
             .setCategory(Notification.CATEGORY_MESSAGE)
             .setStyle(
-                Notification.MessagingStyle(person)
+                Notification.MessagingStyle(persona)
                     .setGroupConversation(false)
-                    .addMessage(mensaje, currentTimeMillis(), person)
+                    .addMessage(mensaje, currentTimeMillis(), persona)
             )
-            .addPerson(person)
+            .addPerson(persona)
             .setShowWhen(true)
             .setContentIntent(crearIntent(REQUEST_CONTENT))
     }
     fun mostrarNotification(mensaje: String) {
         val icon = Icon.createWithResource(context, R.drawable.logo)
-        val person = crearPersona(icon)
-        val notification = crearNotification(mensaje, icon, person)
+        val persona = crearPersona(icon)
+        val notification = crearNotification(mensaje, icon, persona)
         val bubbleMetaData = crearBubbleMetadata(icon)
         notification.setBubbleMetadata(bubbleMetaData)
         notificationManager?.notify(NOTIFICATION_ID, notification.build())
