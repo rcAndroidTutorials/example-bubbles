@@ -53,7 +53,7 @@ class GestorNotificationes(private val context: Context) {
     }
     private fun crearNotification(mensaje: String, icon: Icon, person: Person): Notification.Builder {
         return Notification.Builder(context, CHANNELS)
-            .setContentTitle("Code Coach")
+            .setContentTitle(mensaje)
             .setLargeIcon(icon)
             .setSmallIcon(icon)
             .setCategory(Notification.CATEGORY_MESSAGE)
